@@ -68,6 +68,7 @@ export default class FluwxPlugin implements FlutterPlugin, MethodCallHandler, Ab
       this.shareHandler?.share(call, result);
       return;
     }
+        console.log('微信操作',call.method)
 
     switch (call.method) {
       case "isWeChatInstalled":
@@ -155,6 +156,7 @@ export default class FluwxPlugin implements FlutterPlugin, MethodCallHandler, Ab
   // 微信回调 start
 
   onReq = (req: wechatSDK.BaseReq): void => {
+            console.log('微信回调开始')
     if (req instanceof wechatSDK.LaunchFromWXReq) {
       const _result: Map<string, ESObject> = new Map();
       _result.set("extMsg", req.message?.messageExt);
@@ -190,6 +192,7 @@ export default class FluwxPlugin implements FlutterPlugin, MethodCallHandler, Ab
   // 微信回调 end
 
   onAuthResponse(resp: wechatSDK.SendAuthResp) {
+            console.log('微信回调结束')
     const result: Map<string, ESObject> = new Map();
     result.set(KEY_ERR_CODE, resp.errCode);
     result.set(KEY_ERR_STR, resp.errStr);
