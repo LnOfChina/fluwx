@@ -37,6 +37,7 @@ export class WXAPiHandler {
   }
 
   static checkWeChatInstallation(result: MethodResult) {
+    console.log('判断微信是否安装')
     const isInstalled = bundleManager.canOpenLink("weixin://")
     result.success(isInstalled)
   }
